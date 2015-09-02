@@ -8,7 +8,7 @@ import javax.persistence.Query;
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 public class UsuarioDAO {
-
+	//Depen
 	EntityManager em;
 	
 	public UsuarioDAO(EntityManager em) {
