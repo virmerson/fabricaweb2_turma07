@@ -2,17 +2,21 @@ package br.com.fabricadeprogramador.entidade;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+
 public class Usuario implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
+	@Column(name="nomeusu")
 	private String nome;
 	private String login;
 	private String senha;
@@ -82,6 +86,12 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", login=" + login
+				+ ", senha=" + senha + "]";
+	}
+	
 
 	
 	
