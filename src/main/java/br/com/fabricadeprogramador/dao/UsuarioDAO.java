@@ -7,30 +7,35 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 @Repository
 public class UsuarioDAO {
-	//Depen
+	//Dependencia
 	@PersistenceContext
 	EntityManager em;
 	
 	public UsuarioDAO(EntityManager em) {
 		this.em =em;
 	}
-
-	//Insert ou Update
-	public void salvar (Usuario usuario){
-		em.getTransaction().begin();
-		em.merge(usuario);
-		em.getTransaction().commit();
+	
+	public UsuarioDAO() {
+	
 	}
 	
+
+	@Transactional
+	public Usuario salvar (Usuario usuario){
+		Usuario u = em.merge(usuario);
+		return u;
+	
+	}
+	
+	@Transactional
 	public void excluir(Usuario usuario){
-		em.getTransaction().begin();
 		em.remove(usuario);
-		em.getTransaction().commit();
 	}
 	
 	public Usuario buscarPorId(int id){

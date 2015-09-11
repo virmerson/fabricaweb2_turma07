@@ -1,22 +1,35 @@
 package fabricaweb2;
 
 import org.apache.commons.dbcp.BasicDataSource;
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 public class TestSpringBeans {
 
-	public static void main(String[] args) {
+	@Test
+	public void testContextoSpring(){
 		ClassPathXmlApplicationContext ctx =  new ClassPathXmlApplicationContext("file:src/main/resources/META-INF/springbeans.xml");
 		
-		Usuario usu = (Usuario) ctx.getBean("usuario");
-		System.out.println(usu);
-
 		BasicDataSource bds =  (BasicDataSource) ctx.getBean("dataSource");
 		System.out.println(bds.getPassword() + " "+ bds.getUsername() + " "+ bds.getDriverClassName());
 		
 		ctx.close();
 	}
+	
+	/*@Test
+	public void testCadastroCliente(){
+		Cliente cli = new Cliente();
+		cli.setNome("JAO");
+		
+		ClienteDAO cliDAO = new ClienteDAO();
+		Cliente cliSalvo = cliDAO.salvar(cli);
+		
+		Assert.assertNotNull(cliSalvo!=null);
+		
+		
+	}*/
 
 }
