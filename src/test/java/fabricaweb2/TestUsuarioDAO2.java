@@ -11,12 +11,16 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
+import br.com.fabricadeprogramador.dao.DAOException;
 import br.com.fabricadeprogramador.dao.UsuarioDAO;
+import br.com.fabricadeprogramador.dao.UsuarioDAOJPA;
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 
@@ -26,6 +30,7 @@ import br.com.fabricadeprogramador.entidade.Usuario;
 public class TestUsuarioDAO2 {
 
 	@Autowired
+	@Qualifier("usuarioDAOJPA")
 	UsuarioDAO usuarioDAO;
 
 	
@@ -62,7 +67,8 @@ public class TestUsuarioDAO2 {
 	}
 	
 	@Test
-	public void testExcluir(){
+	@Transactional
+	public void testExcluir() throws DAOException{
 		//Criar um novo usuario
 		Usuario usu =  new Usuario();
 		usu.setNome("test");
@@ -71,6 +77,9 @@ public class TestUsuarioDAO2 {
 		
 		//Salvar Usuario de teste
 		Usuario usuSalvo = usuarioDAO.salvar(usu);
+		
+		//Buscar Por ID
+		//Usuario  usuExc =  usuarioDAO.buscarPorId(usuSalvo.getId());
 		
 		//Excluir Usuario
 		usuarioDAO.excluir(usuSalvo);

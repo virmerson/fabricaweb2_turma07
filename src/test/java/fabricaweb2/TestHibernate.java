@@ -6,7 +6,7 @@ import javax.persistence.Persistence;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import br.com.fabricadeprogramador.dao.UsuarioDAO;
+import br.com.fabricadeprogramador.dao.UsuarioDAOJPA;
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 public class TestHibernate {
@@ -31,7 +31,7 @@ public class TestHibernate {
 		usu.setLogin("mar");
 		usu.setSenha("123456");
 		
-		UsuarioDAO usuarioDAO =  new UsuarioDAO(em);
+		UsuarioDAOJPA usuarioDAO =  new UsuarioDAOJPA(em);
 	
 		usuarioDAO.salvar(usu);
 		

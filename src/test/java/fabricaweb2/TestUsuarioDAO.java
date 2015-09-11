@@ -11,14 +11,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import br.com.fabricadeprogramador.dao.UsuarioDAO;
+import br.com.fabricadeprogramador.dao.DAOException;
+import br.com.fabricadeprogramador.dao.UsuarioDAOJPA;
 import br.com.fabricadeprogramador.entidade.Usuario;
 
 public class TestUsuarioDAO {
 
 	EntityManager em ;
 	ClassPathXmlApplicationContext ctx ;
-	UsuarioDAO usuarioDAO;
+	UsuarioDAOJPA usuarioDAO;
 	
 	@Before
 	public void init(){
@@ -27,7 +28,7 @@ public class TestUsuarioDAO {
 		EntityManagerFactory emf = (EntityManagerFactory) ctx.getBean("entityManagerFactory");
 		em =  emf.createEntityManager();
 		//Criando um usuarioDAO
-		 usuarioDAO = new UsuarioDAO(em);
+		 usuarioDAO = new UsuarioDAOJPA(em);
 	}
 	
 	@After
@@ -68,7 +69,7 @@ public class TestUsuarioDAO {
 	}
 	
 	@Test
-	public void testExcluir(){
+	public void testExcluir() throws DAOException{
 		//Criar um novo usuario
 		Usuario usu =  new Usuario();
 		usu.setNome("test");
