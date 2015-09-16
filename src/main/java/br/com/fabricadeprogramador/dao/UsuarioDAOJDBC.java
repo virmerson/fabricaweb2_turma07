@@ -33,4 +33,10 @@ public class UsuarioDAOJDBC implements UsuarioDAO {
 		return null;
 	}
 
+	@Override
+	public Usuario buscarLogin(String login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

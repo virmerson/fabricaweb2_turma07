@@ -13,5 +13,7 @@ public interface UsuarioDAO {
 	public Usuario buscarPorId(int id);
 	
 	public List<Usuario> buscarTodos ();
+
+	public Usuario buscarLogin(String login);
 	
 }

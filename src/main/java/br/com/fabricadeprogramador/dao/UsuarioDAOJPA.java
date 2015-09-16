@@ -56,6 +56,14 @@ public class UsuarioDAOJPA implements UsuarioDAO {
 		Query q =  em.createQuery("select u from Usuario u");
 		return q.getResultList();
 	}
+
+	@Override
+	public Usuario buscarLogin(String login) {
+		Query q =  em.createQuery("select u from Usuario u where u.login=:loginParam");
+		q.setParameter("loginParam", login);
+		q.setMaxResults(1);
+		return (Usuario) q.getSingleResult();
+	}
 	
 	
 }
