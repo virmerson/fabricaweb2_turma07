@@ -16,8 +16,8 @@ import br.com.fabricadeprogramador.service.ServiceException;
 import br.com.fabricadeprogramador.service.UsuarioService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "file:src/main/resources/META-INF/springbeans.xml")
-@TransactionConfiguration( transactionManager="transactionManager")
+@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/springbeans.xml")
+@TransactionConfiguration( transactionManager="transactionManager", defaultRollback=true)
 public class TestUsuarioService {
 
 	@Autowired
@@ -45,7 +45,7 @@ public class TestUsuarioService {
 	@Test
 	public void testDeveSalvar() throws ServiceException {
 		Usuario usu = new Usuario();
-		usu.setLogin("novousu3323134");
+		usu.setLogin("novousu332313443443ssas");
 		usu.setSenha("123");
 		usu.setNome("novo");
 		
