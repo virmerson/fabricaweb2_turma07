@@ -39,7 +39,7 @@ public class UsuarioDAOJPA implements UsuarioDAO {
 	 * em.remove(usuario);
 	 * 
 	 * }
-	 */
+	 */ 
 
 	public void excluir(Usuario usuario) throws DAOException {
 		try {

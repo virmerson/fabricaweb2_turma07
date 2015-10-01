@@ -15,7 +15,7 @@ import br.com.fabricadeprogramador.entidade.Usuario;
 @Service
 public class UsuarioService {
 	
-	@Autowired
+	@Autowired 
 	@Qualifier(value="usuarioDAOJPA")
 	UsuarioDAO usuarioDAO;
 	

@@ -12,8 +12,6 @@ import br.com.fabricadeprogramador.entidade.Usuario;
 import br.com.fabricadeprogramador.service.ServiceException;
 import br.com.fabricadeprogramador.service.UsuarioService;
 
-
-
 @Controller(value="usuCtrl")
 public class UsuarioController {
 
