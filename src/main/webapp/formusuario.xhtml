@@ -44,6 +44,11 @@
 			<f:facet name="header">Login</f:facet>
 				#{usu.login}
 			</h:column>
+			
+			<h:column>
+				<h:commandButton value="Editar" actionListener="#{usuCtrl.editar(usu)}"/>
+				<h:commandButton value="excluir" actionListener="#{usuCtrl.excluir(usu)}" />
+			</h:column>
 	
 	</h:dataTable>
 </h:form>
