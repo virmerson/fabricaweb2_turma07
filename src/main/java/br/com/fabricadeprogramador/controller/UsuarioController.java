@@ -3,7 +3,9 @@ package br.com.fabricadeprogramador.controller;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,8 +35,12 @@ public class UsuarioController {
 	public void excluir(Usuario usuario){
 		try {
 			usuarioService.excluir(usuario);
+			usuarioList.remove(usuario);
+			MensagemUtil.mensagemAviso(MensagemUtil.EXCLUIDO_SUCESSO);
+		
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+			
+			MensagemUtil.mensagemErro(MensagemUtil.FALHA_EXCLUSAO);
 			e.printStackTrace();
 		}
 	}
@@ -51,9 +57,9 @@ public class UsuarioController {
 			
 			//Limpa o form
 			usuario= new Usuario();
-			System.out.println("SUCESSO!");
+			MensagemUtil.mensagemAviso(MensagemUtil.SALVO_SUCESSO);
 		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
+			MensagemUtil.mensagemAviso(MensagemUtil.FALHA_SALVAR);
 			e.printStackTrace();
 		}
 	}

@@ -27,11 +27,13 @@ public class UsuarioDAOJPA implements UsuarioDAO {
 	}
 
 	@Transactional
+	
 	public Usuario salvar(Usuario usuario) {
 		Usuario u = em.merge(usuario);
 		return u;
 
 	}
+	
 
 	/*
 	 * @Transactional public void excluir(Usuario usuario) {
@@ -41,14 +43,18 @@ public class UsuarioDAOJPA implements UsuarioDAO {
 	 * }
 	 */ 
 
+	@Transactional
+	//begin()
 	public void excluir(Usuario usuario) throws DAOException {
 		try {
-			em.remove(usuario);
+			
+			Usuario usuManaged = em.getReference(Usuario.class, usuario.getId());
+			em.remove(usuManaged);
 		} catch (Exception e) {
 			throw new DAOException("Não foi possivel Excluir!", e);
 		}
 	}
-
+	//commit()
 	public Usuario buscarPorId(int id) {
 		return em.find(Usuario.class, id);
 	}

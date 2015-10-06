@@ -10,6 +10,13 @@
 <body>
 
 <h:form>
+		<h:selectOneMenu value="#{usuCtrl.usuario.perfil}" converter="#{perfilConverter}">
+			<f:selectItem itemValue="" itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
+			<f:selectItems value="#{perfilCtrl.perfilList}" var="p" itemLabel="#{p.descricao}"></f:selectItems>
+			
+		</h:selectOneMenu>
+		
+		
 		Nome:
 		<h:inputText value="#{usuCtrl.usuario.nome}"/>
 		Login:
@@ -22,7 +29,7 @@
 </h:form>
 
 <h:form>
-
+	<h:messages/>
 	<h:dataTable value="#{usuCtrl.usuarioList}" var="usu" border="1" >
 			<f:facet name="header">
 			Lista de Usuarios
@@ -33,6 +40,14 @@
 				
 				#{usu.id}
 			</h:column>
+			
+			<h:column>
+			<f:facet name="header">Perfil</f:facet>
+				#{usu.perfil.descricao} 
+			</h:column>
+			
+			
+			
 			<h:column>
 			
 			<f:facet name="header">Nome</f:facet>
