@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fabricadeprogramador.dao.DAOException;
 import br.com.fabricadeprogramador.dao.PerfilDAO;
@@ -19,7 +18,7 @@ public class PerfilService {
 	@Qualifier(value="perfilDAOJPA")
 	PerfilDAO perfilDAO;
 	
-	@Transactional
+
 	public Perfil salvar(Perfil perfil) throws ServiceException{
 		return perfilDAO.salvar(perfil);
 	}

@@ -1,4 +1,4 @@
-package br.com.fabricadeprogramador.controller;
+package br.com.fabricadeprogramador.converter;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
@@ -19,7 +19,8 @@ public class PerfilConverter implements Converter {
 	@Override
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String idTela) {
 		try {
-			return perfilService.buscarPorId(Integer.parseInt(idTela));
+			Perfil p=  perfilService.buscarPorId(Integer.parseInt(idTela));
+			return p;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
@@ -30,8 +31,11 @@ public class PerfilConverter implements Converter {
 	public String getAsString(FacesContext arg0, UIComponent arg1,
 			Object objPerfil) {
 		try {
-			Perfil p = (Perfil) objPerfil;
-			return p.getId().toString();
+			if (objPerfil instanceof Perfil){
+				Perfil p = (Perfil) objPerfil;
+				return p.getId().toString();
+			}
+			return null;
 		} catch (Exception e) {
 			return null;
 		}
