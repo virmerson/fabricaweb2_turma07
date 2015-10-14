@@ -13,7 +13,7 @@ public class Perfil implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
-	private String descricao;
+	private String descricao; 
 	public Integer getId() {
 		return id;
 	}

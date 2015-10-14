@@ -29,7 +29,7 @@ public class TestPerfilDAO {
 		
 		
 		Perfil p =  new Perfil();
-		p.setDescricao("VISITA");
+		p.setDescricao("PUBLIC");
 		
 		
 		p = perfilDAO.salvar(p);
