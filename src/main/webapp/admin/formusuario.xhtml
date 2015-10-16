@@ -1,88 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:body>
 
-<h:form>
-		<h:selectOneMenu value="#{usuCtrl.usuario.perfil}" converter="#{perfilConverter}">
-			<f:selectItem itemValue="" itemLabel="Selecione" noSelectionOption="true"></f:selectItem>
-			<f:selectItems value="#{perfilCtrl.perfilList}" var="p" itemLabel="#{p.descricao}"></f:selectItems>
-			
-		</h:selectOneMenu>
+	<ui:define name="conteudo">
+		<h:form>
+
+
+	<p:panelGrid columns="2">
+
+			Perfil:
+			<p:selectOneMenu value="#{usuCtrl.usuario.perfil}"
+				converter="#{perfilConverter}">
+				<f:selectItem itemValue="" itemLabel="Selecione"
+					noSelectionOption="true"></f:selectItem>
+				<f:selectItems value="#{perfilCtrl.perfilList}" var="p"
+					itemLabel="#{p.descricao}"></f:selectItems>
+
+			</p:selectOneMenu>
 		
 		
 		Nome:
-		<h:inputText value="#{usuCtrl.usuario.nome}"/>
+		<p:inputText value="#{usuCtrl.usuario.nome}" />
 		Login:
-		<h:inputText value="#{usuCtrl.usuario.login}">
-			<f:validateLength maximum="8" minimum="3"/>
-		</h:inputText> 
+		<p:inputText value="#{usuCtrl.usuario.login}">
+				<f:validateLength maximum="8" minimum="3" />
+			</p:inputText> 
 		Senha:
-		<h:inputText value="#{usuCtrl.usuario.senha}"/>
+		<p:inputText value="#{usuCtrl.usuario.senha}" />
 		
 		Email:
-		<h:inputText value="#{usuCtrl.usuario.email}">
-			<f:validator validatorId="emailValidator"></f:validator>
-		</h:inputText>
-			
-		
-		
-		<p:commandButton value="Salvar" actionListener="#{usuCtrl.salvar()}"/>
+		<p:inputText value="#{usuCtrl.usuario.email}">
+				<f:validator validatorId="emailValidator"></f:validator>
+			</p:inputText>
 
-</h:form>
 
-<h:form>
-	<h:messages/>
-	<h:dataTable value="#{usuCtrl.usuarioList}" var="usu" border="1" >
-			<f:facet name="header">
+
+			<p:commandButton value="Salvar" actionListener="#{usuCtrl.salvar()}" />
+			<p:commandButton value="Cancelar" actionListener="#{usuCtrl.cancelar()}" />
+
+		</p:panelGrid>
+		</h:form>
+
+		<h:form>
+			<p:dataTable value="#{usuCtrl.usuarioList}" var="usu" border="1">
+				<f:facet name="header">
 			Lista de Usuarios
 			</f:facet>
-			
-			<h:column>
-				<f:facet name="header">ID</f:facet>
+
+				<p:column>
+					<f:facet name="header">ID</f:facet>
 				
 				#{usu.id}
-			</h:column>
-			
-			<h:column>
-			<f:facet name="header">Perfil</f:facet>
-				#{usu.perfil.descricao} 
-			</h:column>
-			
-			
-			
-			<h:column>
-			
-			<f:facet name="header">Nome</f:facet>
-				#{usu.nome} 
-			</h:column>
-			
-			<h:column>
-			
-			<f:facet name="header">Login</f:facet>
-				#{usu.login}
-			</h:column>
-			
-			
-			<h:column>
-			
-			<f:facet name="header">E-mail</f:facet>
-				#{usu.email}
-			</h:column>
-			
-			<h:column>
-				<h:commandButton value="Editar" actionListener="#{usuCtrl.editar(usu)}"/>
-				<h:commandButton value="excluir" actionListener="#{usuCtrl.excluir(usu)}" />
-			</h:column>
-	
-	</h:dataTable>
-</h:form>
+			</p:column>
 
-</h:body>
-</html>
+				<p:column>
+					<f:facet name="header">Perfil</f:facet>
+				#{usu.perfil.descricao} 
+			</p:column>
+
+
+
+				<p:column>
+
+					<f:facet name="header">Nome</f:facet>
+				#{usu.nome} 
+			</p:column>
+
+				<p:column>
+
+					<f:facet name="header">Login</f:facet>
+				#{usu.login}
+			</p:column>
+
+
+				<p:column>
+
+					<f:facet name="header">E-mail</f:facet>
+					#{usu.email}
+				</p:column>
+
+				<p:column>
+					<p:commandButton  icon="fa fa-fw fa-pencil"
+						actionListener="#{usuCtrl.editar(usu)}" />
+					<p:commandButton icon="fa fa-fw fa-trash"
+						actionListener="#{usuCtrl.excluir(usu)}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+
+	</ui:define>
+
+
+</ui:composition>

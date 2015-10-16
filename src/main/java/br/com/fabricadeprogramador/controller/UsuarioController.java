@@ -49,6 +49,9 @@ public class UsuarioController {
 		this.usuario=usuario;
 	}
 	
+	public void cancelar(){
+		this.usuario= new Usuario();
+	}
 	public void salvar(){
 		try {
 			Usuario usuSalvo = usuarioService.salvar(usuario);
